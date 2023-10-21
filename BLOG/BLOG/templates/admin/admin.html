@@ -1,9 +1,10 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="./style_admin.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'style_admin.css' %}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
@@ -24,10 +25,10 @@
             <div class="collapse navbar-collapse flex-row-reverse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active text-white" aria-current="page" href="/homepage/index.html">BLOGS</a>
+                        <a class="nav-link active text-white" aria-current="page" href="/">BLOGS</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active text-white" aria-current="page" href="/admin/admin.html">ADMIN</a>
+                        <a class="nav-link active text-white" aria-current="page" href="/admin">ADMIN</a>
                     </li>
                 </ul>
             </div>
@@ -36,26 +37,27 @@
 
     <!-- ------------------------------Content------------------------------ -->
 
-    <div class="container">  
-        <form id="contact" action="" method="post">
-          <h3>Blog Form</h3>
-          <h4>Genrate New Blog </h4>
-          <fieldset>
-            <input placeholder="Blog Name" type="text" tabindex="1" required autofocus>
-          </fieldset>
-          <fieldset>
-            <input type="file" tabindex="2" required>
-          </fieldset>          
-          <fieldset>
-            <textarea placeholder="Blog Description here...." tabindex="5" required></textarea>
-          </fieldset>
-          <fieldset>
-            <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>
-          </fieldset>
-          <p class="copyright">Designed by <a href="mailto:princegupta98299@gmail.com" title="Contact Prince">Prince</a></p>
+    <div class="container">
+        <form id="contact" method="post" action="{% url 'create_blog_post' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h3>Blog Form</h3>
+            <h4>Genrate New Blog </h4>
+            <fieldset>
+                <input placeholder="Blog Name" type="text" tabindex="1" required autofocus>
+            </fieldset>
+            <fieldset>
+                <input type="file" tabindex="2" required>
+            </fieldset>
+            <fieldset>
+                <textarea placeholder="Blog Description here...." tabindex="5" required></textarea>
+            </fieldset>
+            <fieldset>
+                <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>
+            </fieldset>
+            <p class="copyright">Designed by <a href="mailto:princegupta98299@gmail.com" title="Contact Prince">Prince</a></p>
         </form>
-      </div>
-    
+    </div>
+
 
 
 
@@ -67,10 +69,11 @@
     <!-- ------------------------------FOOTER------------------------------ -->
 
     <div class="card-footer  text-center text-warning">
-        <p class="copyright">Designed by <a class="text-decoration-none text-success"  href="mailto:princegupta98299@gmail.com" title="Contact Prince">Prince</a></p>
+        <p class="copyright">Designed by <a class="text-decoration-none text-success"
+                href="mailto:princegupta98299@gmail.com" title="Contact Prince">Prince</a></p>
         <p>&copy; 2023 by Prince Gupta</p>
     </div>
-    
+
 </body>
 
 </html>
